@@ -1,5 +1,15 @@
 <app-navbar></app-navbar>
 
+<div class="particles-bg">
+  <div class="particle" *ngFor="let p of particles"
+    [style.left.%]="p.x"
+    [style.top.%]="p.y"
+    [style.width.px]="p.size"
+    [style.height.px]="p.size"
+    [style.animationDelay]="p.delay">
+  </div>
+</div>
+
 <ion-content [fullscreen]="true" [scrollEvents]="true" (ionScroll)="onScroll($event)">
   <app-hero></app-hero>
   <app-about></app-about>

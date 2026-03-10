@@ -31,10 +31,46 @@
   }
 }
 
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 28px;
+.carousel-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.arrow-btn {
+  background: var(--portfolio-card-bg);
+  border: 1px solid var(--portfolio-border);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  font-size: 1.6rem;
+  color: var(--portfolio-text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  line-height: 1;
+
+  &:hover:not(:disabled) {
+    border-color: var(--portfolio-accent);
+    color: var(--portfolio-accent);
+    transform: scale(1.1);
+  }
+
+  &:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+}
+
+.cards-track {
+  display: flex;
+  gap: 20px;
+  overflow: hidden;
+  flex: 1;
+  scroll-behavior: smooth;
 }
 
 .project-card {
@@ -43,6 +79,15 @@
   border-radius: 16px;
   overflow: hidden;
   transition: all 0.3s ease;
+  flex: 0 0 calc(33.333% - 14px);
+
+  @media (max-width: 900px) {
+    flex: 0 0 calc(50% - 10px);
+  }
+
+  @media (max-width: 600px) {
+    flex: 0 0 100%;
+  }
 
   &:hover {
     border-color: var(--portfolio-accent);
@@ -56,7 +101,7 @@
 
 .project-image {
   position: relative;
-  height: 180px;
+  height: 160px;
   background: var(--portfolio-bg-secondary);
 }
 
@@ -66,7 +111,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 4rem;
+  font-size: 3.5rem;
 }
 
 .project-overlay {
@@ -108,14 +153,14 @@
 }
 
 .project-body {
-  padding: 20px 24px;
+  padding: 16px 20px;
 }
 
 .project-tags-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   flex-wrap: wrap;
   gap: 8px;
 }
@@ -142,14 +187,40 @@
 }
 
 .project-title {
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   font-weight: 700;
   margin-bottom: 8px;
   color: var(--portfolio-text);
 }
 
 .project-desc {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--portfolio-text-secondary);
   line-height: 1.6;
+}
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 28px;
+}
+
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 2px solid var(--portfolio-border);
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &.active {
+    background: var(--portfolio-accent);
+    border-color: var(--portfolio-accent);
+    transform: scale(1.3);
+  }
+
+  &:hover {
+    border-color: var(--portfolio-accent);
+  }
 }

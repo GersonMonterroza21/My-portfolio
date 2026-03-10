@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonContent } from '@ionic/angular/standalone';
+import { NgFor } from '@angular/common';
 import { NavbarComponent } from '../components/navbar/navbar.component';
 import { HeroComponent } from '../components/hero/hero.component';
 import { AboutComponent } from '../components/about/about.component';
@@ -15,6 +16,7 @@ import { ContactComponent } from '../components/contact/contact.component';
   standalone: true,
   imports: [
     IonContent,
+    NgFor,
     NavbarComponent,
     HeroComponent,
     AboutComponent,
@@ -26,6 +28,13 @@ import { ContactComponent } from '../components/contact/contact.component';
 })
 export class HomePage {
   @ViewChild(NavbarComponent) navbar!: NavbarComponent;
+
+  particles = Array.from({ length: 50 }, () => ({
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    size: Math.random() * 6 + 2,
+    delay: `${Math.random() * 8}s`
+  }));
 
   onScroll(event: any) {
     const scrollTop = event.detail.scrollTop;

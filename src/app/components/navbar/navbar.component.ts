@@ -1,12 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { IonIcon } from '@ionic/angular/standalone';
+import { addIcons } from 'ionicons';
+import {
+  sunnyOutline, moonOutline, homeOutline, personOutline,
+  flashOutline, rocketOutline, briefcaseOutline, mailOutline
+} from 'ionicons/icons';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
   standalone: true,
-  imports: [CommonModule]
+  imports: [CommonModule, IonIcon]
 })
 export class NavbarComponent implements OnInit {
   isDark = true;
@@ -15,13 +21,20 @@ export class NavbarComponent implements OnInit {
   activeSection = 0;
 
   sections = [
-    { id: 'hero', label: 'Inicio' },
-    { id: 'about', label: 'Sobre mí' },
-    { id: 'skills', label: 'Skills' },
-    { id: 'projects', label: 'Proyectos' },
-    { id: 'experience', label: 'Experiencia' },
-    { id: 'contact', label: 'Contacto' },
+    { id: 'hero', label: 'Inicio', icon: 'home-outline' },
+    { id: 'about', label: 'Sobre mí', icon: 'person-outline' },
+    { id: 'skills', label: 'Skills', icon: 'flash-outline' },
+    { id: 'projects', label: 'Proyectos', icon: 'rocket-outline' },
+    { id: 'experience', label: 'Exp.', icon: 'briefcase-outline' },
+    { id: 'contact', label: 'Contacto', icon: 'mail-outline' },
   ];
+
+  constructor() {
+    addIcons({
+      sunnyOutline, moonOutline, homeOutline, personOutline,
+      flashOutline, rocketOutline, briefcaseOutline, mailOutline
+    });
+  }
 
   ngOnInit() {
     document.body.classList.add('dark');

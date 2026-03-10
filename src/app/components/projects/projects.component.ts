@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { NgFor } from '@angular/common';
 
 interface Project {
@@ -19,8 +19,16 @@ interface Project {
   imports: [NgFor]
 })
 export class ProjectsComponent implements OnInit {
+  @ViewChild('track') track!: ElementRef;
+
   filters = ['ALL', 'FRONTEND', 'BACKEND', 'FULLSTACK'];
   activeFilter = 'ALL';
+  currentIndex = 0;
+get cardWidth(): number {
+  if (window.innerWidth < 600) return window.innerWidth * 0.9;
+  if (window.innerWidth < 900) return window.innerWidth * 0.45;
+  return (window.innerWidth * 0.85) / 3;
+}
 
   projects: Project[] = [
     {
@@ -59,18 +67,66 @@ export class ProjectsComponent implements OnInit {
       github: '#',
       demo: '#'
     },
+    {
+      title: 'App Móvil',
+      description: 'Aplicación móvil multiplataforma con Ionic y Capacitor.',
+      category: 'FULLSTACK',
+      techs: ['Ionic', 'Angular', 'Capacitor'],
+      emoji: '📱',
+      github: '#',
+      demo: '#'
+    },
   ];
 
   filteredProjects: Project[] = [];
+  dotsArray: number[] = [];
+
+  get isAtEnd(): boolean {
+    return this.currentIndex >= this.filteredProjects.length - 1;
+  }
 
   ngOnInit() {
     this.filteredProjects = this.projects;
+    this.updateDots();
   }
 
   setFilter(filter: string) {
     this.activeFilter = filter;
+    this.currentIndex = 0;
     this.filteredProjects = filter === 'ALL'
       ? this.projects
       : this.projects.filter(p => p.category === filter);
+    this.updateDots();
+    this.scrollTrack();
+  }
+
+  updateDots() {
+    this.dotsArray = Array.from({ length: this.filteredProjects.length }, (_, i) => i);
+  }
+
+  next() {
+    if (!this.isAtEnd) {
+      this.currentIndex++;
+      this.scrollTrack();
+    }
+  }
+
+  prev() {
+    if (this.currentIndex > 0) {
+      this.currentIndex--;
+      this.scrollTrack();
+    }
+  }
+
+  goTo(index: number) {
+    this.currentIndex = index;
+    this.scrollTrack();
+  }
+
+  scrollTrack() {
+    if (this.track) {
+      const el = this.track.nativeElement;
+      el.scrollTo({ left: this.currentIndex * (this.cardWidth + 24), behavior: 'smooth' });
+    }
   }
 }

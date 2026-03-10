@@ -1,0 +1,25 @@
+<nav class="navbar" [class.scrolled]="isScrolled">
+  <div class="nav-logo">
+    <span class="logo-text">EG</span>
+    <span class="logo-arrow">>></span>
+  </div>
+
+  <div class="nav-right">
+    <button class="theme-toggle" (click)="toggleTheme()">
+      <span *ngIf="isDark">☀️</span>
+      <span *ngIf="!isDark">🌙</span>
+    </button>
+    <span class="nav-lang" (click)="toggleLang()">{{ currentLang }}</span>
+  </div>
+</nav>
+
+<div class="side-dots">
+  <div
+    *ngFor="let section of sections; let i = index"
+    class="dot-item"
+    [class.active]="activeSection === i"
+    (click)="scrollToSection(section.id)">
+    <span class="dot-label">{{ section.label }}</span>
+    <div class="dot"></div>
+  </div>
+</div>

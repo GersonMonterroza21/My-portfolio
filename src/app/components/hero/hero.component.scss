@@ -1,0 +1,146 @@
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 0 5%;
+}
+
+.particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  background: var(--portfolio-accent);
+  border-radius: 50%;
+  opacity: 0.15;
+  animation: float linear infinite;
+  animation-duration: 8s;
+
+  &:nth-child(odd) {
+    animation-duration: 12s;
+    opacity: 0.08;
+  }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.15; }
+  90% { opacity: 0.15; }
+  100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+}
+
+.hero-content {
+  max-width: 700px;
+  z-index: 1;
+  padding-top: 80px;
+}
+
+.hero-subtitle {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: var(--portfolio-accent);
+  margin-bottom: 16px;
+}
+
+.hero-title {
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 24px;
+  color: var(--portfolio-text);
+}
+
+.typewriter {
+  display: inline-block;
+  min-height: 1.2em;
+}
+
+.cursor {
+  animation: blink 0.8s infinite;
+  color: var(--portfolio-accent);
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.hero-description {
+  font-size: 1.05rem;
+  color: var(--portfolio-text-secondary);
+  line-height: 1.7;
+  margin-bottom: 32px;
+  max-width: 560px;
+
+  strong {
+    color: var(--portfolio-text);
+  }
+}
+
+.hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 40px;
+}
+
+.tag {
+  padding: 6px 16px;
+  border: 1px solid var(--portfolio-border);
+  border-radius: 999px;
+  font-size: 0.85rem;
+  color: var(--portfolio-text-secondary);
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: var(--portfolio-accent);
+    color: var(--portfolio-accent);
+  }
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  padding: 12px 28px;
+  background: var(--portfolio-accent);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+  }
+}
+
+.btn-secondary {
+  padding: 12px 28px;
+  background: transparent;
+  color: var(--portfolio-text);
+  border: 1px solid var(--portfolio-border);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: var(--portfolio-accent);
+    color: var(--portfolio-accent);
+    transform: translateY(-2px);
+  }
+}

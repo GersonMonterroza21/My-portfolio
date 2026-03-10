@@ -1,0 +1,35 @@
+:root {
+  --ion-color-primary: #7c3aed;
+  --ion-color-primary-rgb: 124, 58, 237;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-shade: #6d33d1;
+  --ion-color-primary-tint: #8a4eef;
+
+  --portfolio-bg: #f8f8ff;
+  --portfolio-bg-secondary: #f0eeff;
+  --portfolio-text: #0a0a0f;
+  --portfolio-text-secondary: #555570;
+  --portfolio-accent: #7c3aed;
+  --portfolio-card-bg: #ffffff;
+  --portfolio-border: rgba(124, 58, 237, 0.15);
+  --portfolio-nav-bg: rgba(248, 248, 255, 0.85);
+}
+
+body.dark {
+  --portfolio-bg: #0a0a0f;
+  --portfolio-bg-secondary: #111118;
+  --portfolio-text: #f0f0ff;
+  --portfolio-text-secondary: #9999bb;
+  --portfolio-accent: #9d6fff;
+  --portfolio-card-bg: #16161f;
+  --portfolio-border: rgba(157, 111, 255, 0.2);
+  --portfolio-nav-bg: rgba(10, 10, 15, 0.85);
+
+  --ion-background-color: #0a0a0f;
+  --ion-text-color: #f0f0ff;
+}
+
+body.light {
+  --ion-background-color: #f8f8ff;
+  --ion-text-color: #0a0a0f;
+}

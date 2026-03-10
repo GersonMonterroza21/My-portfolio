@@ -1,0 +1,38 @@
+<section class="projects" id="projects">
+  <h2 class="section-title">PROYECTOS</h2>
+  <div class="section-underline"></div>
+
+  <div class="filter-tabs">
+    <button
+      *ngFor="let filter of filters"
+      class="filter-btn"
+      [class.active]="activeFilter === filter"
+      (click)="setFilter(filter)">
+      {{ filter }}
+    </button>
+  </div>
+
+  <div class="projects-grid">
+    <div class="project-card" *ngFor="let project of filteredProjects">
+      <div class="project-image">
+        <div class="project-placeholder">
+          <span>{{ project.emoji }}</span>
+        </div>
+        <div class="project-overlay">
+          <a [href]="project.github" target="_blank" class="overlay-btn">GitHub</a>
+          <a [href]="project.demo" target="_blank" class="overlay-btn accent-btn">Demo</a>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="project-tags-row">
+          <span class="project-category">{{ project.category }}</span>
+          <div class="project-techs">
+            <span class="project-tech" *ngFor="let tech of project.techs">{{ tech }}</span>
+          </div>
+        </div>
+        <h3 class="project-title">{{ project.title }}</h3>
+        <p class="project-desc">{{ project.description }}</p>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,138 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 5%;
+  transition: all 0.3s ease;
+
+  &.scrolled {
+    background: var(--portfolio-nav-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 14px 5%;
+    border-bottom: 1px solid var(--portfolio-border);
+  }
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+
+  .logo-text {
+    background: var(--portfolio-accent);
+    color: white;
+    font-weight: 800;
+    font-size: 1rem;
+    padding: 6px 10px;
+    border-radius: 6px;
+    letter-spacing: 1px;
+  }
+
+  .logo-arrow {
+    color: var(--portfolio-accent);
+    font-weight: 800;
+    font-size: 1.1rem;
+  }
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.theme-toggle {
+  background: none;
+  border: 1px solid var(--portfolio-border);
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: var(--portfolio-accent);
+    transform: scale(1.1);
+  }
+}
+
+.nav-lang {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--portfolio-text);
+  cursor: pointer;
+  border: 1px solid var(--portfolio-border);
+  padding: 6px 12px;
+  border-radius: 6px;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: var(--portfolio-accent);
+    color: var(--portfolio-accent);
+  }
+}
+
+.side-dots {
+  position: fixed;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.dot-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+
+  .dot-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--portfolio-text-secondary);
+    opacity: 0;
+    transform: translateX(10px);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid var(--portfolio-text-secondary);
+    transition: all 0.3s ease;
+  }
+
+  &:hover .dot-label,
+  &.active .dot-label {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  &.active .dot {
+    background: var(--portfolio-accent);
+    border-color: var(--portfolio-accent);
+    transform: scale(1.3);
+  }
+
+  &:hover .dot {
+    border-color: var(--portfolio-accent);
+  }
+}

@@ -1,3 +1,43 @@
-<p>
-  contact works!
-</p>
+<section class="contact" id="contact">
+  <div class="contact-left">
+    <h2 class="section-title">CONTACTO</h2>
+    <div class="section-underline"></div>
+
+    <p class="contact-question">¿Tienes un proyecto en mente?</p>
+    <p class="contact-text">
+      Estoy listo para llevar tus ideas al siguiente nivel.
+      Escríbeme y hablemos sobre cómo puedo ayudarte.
+    </p>
+
+    <div class="contact-socials">
+      <p class="socials-label">REDES SOCIALES</p>
+      <div class="socials-row">
+        <a href="mailto:tuemail@gmail.com" class="social-btn" title="Email">✉️</a>
+        <a href="https://github.com/tuusuario" target="_blank" class="social-btn" title="GitHub">🐙</a>
+        <a href="https://linkedin.com/in/tuusuario" target="_blank" class="social-btn" title="LinkedIn">💼</a>
+      </div>
+    </div>
+
+    <button class="cv-btn">⬇ Descargar CV</button>
+  </div>
+
+  <div class="contact-right">
+    <div class="contact-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label>NOMBRE</label>
+          <input type="text" [(ngModel)]="form.name" placeholder="Tu nombre" />
+        </div>
+        <div class="form-group">
+          <label>CORREO ELECTRÓNICO</label>
+          <input type="email" [(ngModel)]="form.email" placeholder="tu@email.com" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label>TU MENSAJE</label>
+        <textarea [(ngModel)]="form.message" rows="6" placeholder="Cuéntame sobre tu proyecto..."></textarea>
+      </div>
+      <button class="submit-btn" (click)="sendMessage()">ENVIAR MENSAJE</button>
+    </div>
+  </div>
+</section>

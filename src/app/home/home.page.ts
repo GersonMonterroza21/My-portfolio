@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonContent } from '@ionic/angular/standalone';
 import { NavbarComponent } from '../components/navbar/navbar.component';
 import { HeroComponent } from '../components/hero/hero.component';
@@ -24,4 +24,14 @@ import { ContactComponent } from '../components/contact/contact.component';
     ContactComponent
   ],
 })
-export class HomePage {}
+export class HomePage {
+  @ViewChild(NavbarComponent) navbar!: NavbarComponent;
+
+  onScroll(event: any) {
+    const scrollTop = event.detail.scrollTop;
+    if (this.navbar) {
+      this.navbar.isScrolled = scrollTop > 50;
+      this.navbar.updateActiveSectionByScroll(scrollTop);
+    }
+  }
+}

@@ -17,12 +17,12 @@ export class HeroComponent implements OnInit, OnDestroy {
   private isDeleting = false;
   private typeInterval: any;
 
-  particles = Array.from({ length: 30 }, () => ({
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    size: Math.random() * 4 + 1,
-    delay: `${Math.random() * 5}s`
-  }));
+particles = Array.from({ length: 50 }, () => ({
+  x: Math.random() * 100,
+  y: Math.random() * 100,
+  size: Math.random() * 6 + 2,
+  delay: `${Math.random() * 8}s`
+}));
 
   ngOnInit() {
     this.startTypewriter();

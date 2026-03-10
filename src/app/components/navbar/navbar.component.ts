@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -27,22 +27,19 @@ export class NavbarComponent implements OnInit {
     document.body.classList.add('dark');
   }
 
-  @HostListener('window:scroll', [])
-  onScroll() {
-    this.isScrolled = window.scrollY > 50;
-    this.updateActiveSection();
-  }
-
-  updateActiveSection() {
+  updateActiveSectionByScroll(scrollTop: number) {
     const offsets = this.sections.map(s => {
       const el = document.getElementById(s.id);
-      return el ? el.getBoundingClientRect().top : 9999;
+      return el ? el.offsetTop : 9999;
     });
-    const active = offsets.findIndex((top, i) => {
-      const next = offsets[i + 1] ?? 9999;
-      return top <= 100 && next > 100;
-    });
-    if (active !== -1) this.activeSection = active;
+
+    let active = 0;
+    for (let i = 0; i < offsets.length; i++) {
+      if (scrollTop >= offsets[i] - 200) {
+        active = i;
+      }
+    }
+    this.activeSection = active;
   }
 
   toggleTheme() {

@@ -92,6 +92,7 @@
   z-index: 999;
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
   gap: 20px;
 }
 
@@ -100,6 +101,7 @@
   align-items: center;
   gap: 10px;
   cursor: pointer;
+  justify-content: flex-end;
 
   .dot-label {
     font-size: 0.7rem;
@@ -110,11 +112,13 @@
     transition: all 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 1px;
+    white-space: nowrap;
   }
 
   .dot {
     width: 10px;
     height: 10px;
+    min-width: 10px;
     border-radius: 50%;
     border: 2px solid var(--portfolio-text-secondary);
     transition: all 0.3s ease;
@@ -135,4 +139,9 @@
   &:hover .dot {
     border-color: var(--portfolio-accent);
   }
+}
+
+.navbar, .side-dots {
+  z-index: 1000;
+  position: fixed;
 }

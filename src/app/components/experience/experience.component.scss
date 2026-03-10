@@ -1,0 +1,126 @@
+.experience {
+  min-height: 80vh;
+  padding: 100px 5%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.timeline {
+  position: relative;
+  padding: 20px 0;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--portfolio-border);
+    transform: translateX(-50%);
+  }
+
+  @media (max-width: 768px) {
+    &::before {
+      left: 16px;
+    }
+  }
+}
+
+.timeline-item {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: calc(50% + 40px);
+  margin-bottom: 48px;
+  position: relative;
+
+  &.right {
+    justify-content: flex-start;
+    padding-right: 0;
+    padding-left: calc(50% + 40px);
+  }
+
+  @media (max-width: 768px) {
+    justify-content: flex-start;
+    padding-right: 0;
+    padding-left: 48px;
+
+    &.right {
+      padding-left: 48px;
+    }
+  }
+}
+
+.timeline-dot {
+  position: absolute;
+  left: 50%;
+  top: 20px;
+  width: 14px;
+  height: 14px;
+  background: var(--portfolio-accent);
+  border-radius: 50%;
+  transform: translateX(-50%);
+  border: 3px solid var(--portfolio-bg);
+  z-index: 1;
+
+  @media (max-width: 768px) {
+    left: 16px;
+  }
+}
+
+.timeline-card {
+  background: var(--portfolio-card-bg);
+  border: 1px solid var(--portfolio-border);
+  border-radius: 16px;
+  padding: 24px;
+  max-width: 420px;
+  width: 100%;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: var(--portfolio-accent);
+    transform: translateY(-4px);
+  }
+}
+
+.timeline-date {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--portfolio-text-secondary);
+  text-transform: uppercase;
+}
+
+.timeline-role {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 8px 0 4px;
+  color: var(--portfolio-text);
+}
+
+.timeline-company {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.timeline-desc {
+  font-size: 0.9rem;
+  color: var(--portfolio-text-secondary);
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.timeline-techs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.timeline-tech {
+  font-size: 0.75rem;
+  padding: 4px 12px;
+  border: 1px solid var(--portfolio-border);
+  border-radius: 4px;
+  color: var(--portfolio-text-secondary);
+}

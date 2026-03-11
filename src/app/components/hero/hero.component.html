@@ -1,27 +1,26 @@
 <section class="hero" id="hero">
-  <div class="particles">
-    <div class="particle" *ngFor="let p of particles" 
-      [style.left.%]="p.x" 
-      [style.top.%]="p.y"
-      [style.width.px]="p.size"
-      [style.height.px]="p.size"
-      [style.animationDelay]="p.delay">
-    </div>
-  </div>
-
   <div class="hero-content">
-    <p class="hero-subtitle">FULL STACK DEVELOPER</p>
+    <p class="hero-subtitle">INGENIERO DE SISTEMAS INFORMÁTICOS</p>
     <h1 class="hero-title">
       Transformando ideas en<br>
       <span class="accent typewriter">{{ displayText }}<span class="cursor">|</span></span>
     </h1>
     <p class="hero-description">
-      Hola, soy <strong>Tu Nombre</strong>, un desarrollador web enfocado en crear
-      interfaces modernas, animadas y bien estructuradas.
+      Hola, soy <strong>Gerson Monterroza</strong>, Ingeniero en Sistemas con experiencia
+      en desarrollo web full-stack, gestión de bases de datos y soluciones en la nube.
     </p>
 
     <div class="hero-tags">
+      <span class="tag">Vue.js</span>
       <span class="tag">Angular</span>
       <span class="tag">Ionic</span>
-      <span class="tag">TypeScript</span>
-      <span class="tag">Node
+      <span class="tag">Laravel</span>
+      <span class="tag">Firebase</span>
+    </div>
+
+    <div class="hero-buttons">
+      <button class="btn-primary" (click)="scrollToProjects()">Ver proyectos</button>
+      <button class="btn-secondary" (click)="scrollToContact()">Contáctame</button>
+    </div>
+  </div>
+</section>

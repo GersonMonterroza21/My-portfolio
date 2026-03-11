@@ -10,19 +10,16 @@ import { CommonModule } from '@angular/common';
 })
 export class HeroComponent implements OnInit, OnDestroy {
   displayText = '';
-  cursor = true;
-  private words = ['experiencias únicas', 'soluciones reales', 'código limpio', 'apps increíbles'];
+  private words = [
+    'experiencias únicas',
+    'soluciones escalables',
+    'código limpio',
+    'apps en tiempo real'
+  ];
   private wordIndex = 0;
   private charIndex = 0;
   private isDeleting = false;
   private typeInterval: any;
-
-particles = Array.from({ length: 50 }, () => ({
-  x: Math.random() * 100,
-  y: Math.random() * 100,
-  size: Math.random() * 6 + 2,
-  delay: `${Math.random() * 8}s`
-}));
 
   ngOnInit() {
     this.startTypewriter();
@@ -42,7 +39,6 @@ particles = Array.from({ length: 50 }, () => ({
         this.displayText = word.substring(0, this.charIndex + 1);
         this.charIndex++;
       }
-
       if (!this.isDeleting && this.charIndex === word.length) {
         setTimeout(() => this.isDeleting = true, 1500);
       } else if (this.isDeleting && this.charIndex === 0) {

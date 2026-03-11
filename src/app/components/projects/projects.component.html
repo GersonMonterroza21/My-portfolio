@@ -21,10 +21,11 @@
           <div class="project-placeholder">
             <span>{{ project.emoji }}</span>
           </div>
-          <div class="project-overlay">
-            <a [href]="project.github" target="_blank" class="overlay-btn">GitHub</a>
-            <a [href]="project.demo" target="_blank" class="overlay-btn accent-btn">Demo</a>
-          </div>
+       <div class="project-overlay">
+  <a [href]="project.github" target="_blank" class="overlay-btn">GitHub</a>
+  <a *ngIf="project.demo !== '#'" [href]="project.demo" target="_blank" class="overlay-btn accent-btn">Demo</a>
+  <a *ngIf="project.store" [href]="project.store" target="_blank" class="overlay-btn store-btn">▶ Play Store</a>
+</div>
         </div>
         <div class="project-body">
           <div class="project-tags-row">

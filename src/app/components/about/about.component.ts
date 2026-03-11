@@ -30,9 +30,9 @@ export class AboutComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   animateCounters() {
-    this.animateValue('yearsCount', 0, 3, 1500);
-    this.animateValue('projectsCount', 0, 20, 2000);
-    this.animateValue('techCount', 0, 10, 1800);
+    this.animateValue('yearsCount', 0, 5, 1500);
+    this.animateValue('projectsCount', 0, 10, 2000);
+    this.animateValue('techCount', 0, 15, 1800);
   }
 
   animateValue(key: 'yearsCount' | 'projectsCount' | 'techCount', start: number, end: number, duration: number) {

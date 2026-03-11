@@ -8,7 +8,7 @@
     <button class="theme-toggle" (click)="toggleTheme()">
       <ion-icon [name]="isDark ? 'sunny-outline' : 'moon-outline'"></ion-icon>
     </button>
-    <span class="nav-lang" (click)="toggleLang()">{{ currentLang }}</span>
+    <span class="nav-lang" (click)="toggleLang()">{{ langService.currentLang() }}</span>
   </div>
 </nav>
 

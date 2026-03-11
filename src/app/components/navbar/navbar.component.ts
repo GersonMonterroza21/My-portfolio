@@ -23,7 +23,6 @@ export class NavbarComponent implements OnInit {
   sections = [
     { id: 'hero', label: 'Inicio', icon: 'home-outline' },
     { id: 'about', label: 'Sobre mí', icon: 'person-outline' },
-    { id: 'skills', label: 'Skills', icon: 'flash-outline' },
     { id: 'projects', label: 'Proyectos', icon: 'rocket-outline' },
     { id: 'experience', label: 'Exp.', icon: 'briefcase-outline' },
     { id: 'contact', label: 'Contacto', icon: 'mail-outline' },

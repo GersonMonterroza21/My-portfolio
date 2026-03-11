@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { NgFor } from '@angular/common';
+import { AnimationService } from '../../services/animation.service';
 
 interface Project {
   title: string;
@@ -18,17 +19,12 @@ interface Project {
   standalone: true,
   imports: [NgFor]
 })
-export class ProjectsComponent implements OnInit {
+export class ProjectsComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('track') track!: ElementRef;
 
   filters = ['ALL', 'FRONTEND', 'BACKEND', 'FULLSTACK'];
   activeFilter = 'ALL';
   currentIndex = 0;
-get cardWidth(): number {
-  if (window.innerWidth < 600) return window.innerWidth * 0.9;
-  if (window.innerWidth < 900) return window.innerWidth * 0.45;
-  return (window.innerWidth * 0.85) / 3;
-}
 
   projects: Project[] = [
     {
@@ -81,13 +77,30 @@ get cardWidth(): number {
   filteredProjects: Project[] = [];
   dotsArray: number[] = [];
 
+  constructor(private animationService: AnimationService) {}
+
   get isAtEnd(): boolean {
     return this.currentIndex >= this.filteredProjects.length - 1;
+  }
+
+  get cardWidth(): number {
+    if (window.innerWidth < 600) return window.innerWidth * 0.9;
+    if (window.innerWidth < 900) return window.innerWidth * 0.45;
+    return (window.innerWidth * 0.85) / 3;
   }
 
   ngOnInit() {
     this.filteredProjects = this.projects;
     this.updateDots();
+  }
+
+  ngAfterViewInit() {
+    const elements = document.querySelectorAll('#projects .fade-up');
+    this.animationService.observe(elements);
+  }
+
+  ngOnDestroy() {
+    this.animationService.disconnect();
   }
 
   setFilter(filter: string) {

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit, OnDestroy } from '@angular/core';
 import { NgFor } from '@angular/common';
+import { AnimationService } from '../../services/animation.service';
 
 @Component({
   selector: 'app-experience',
@@ -8,7 +9,7 @@ import { NgFor } from '@angular/common';
   standalone: true,
   imports: [NgFor]
 })
-export class ExperienceComponent {
+export class ExperienceComponent implements AfterViewInit, OnDestroy {
   experience = [
     {
       date: '2023 — Presente',
@@ -32,4 +33,15 @@ export class ExperienceComponent {
       techs: ['HTML', 'CSS', 'JavaScript']
     },
   ];
+
+  constructor(private animationService: AnimationService) {}
+
+  ngAfterViewInit() {
+    const elements = document.querySelectorAll('#experience .fade-up');
+    this.animationService.observe(elements);
+  }
+
+  ngOnDestroy() {
+    this.animationService.disconnect();
+  }
 }

@@ -1,9 +1,14 @@
 <section class="experience" id="experience">
-  <h2 class="section-title">EXPERIENCIA</h2>
-  <div class="section-underline"></div>
+  <h2 class="section-title fade-up">EXPERIENCIA</h2>
+  <div class="section-underline fade-up delay-1"></div>
 
   <div class="timeline">
-    <div class="timeline-item" *ngFor="let item of experience; let i = index" [class.right]="i % 2 !== 0">
+    <div class="timeline-item fade-up"
+      *ngFor="let item of experience; let i = index"
+      [class.right]="i % 2 !== 0"
+      [class.delay-1]="i === 0"
+      [class.delay-2]="i === 1"
+      [class.delay-3]="i === 2">
       <div class="timeline-dot"></div>
       <div class="timeline-card">
         <span class="timeline-date">{{ item.date }}</span>

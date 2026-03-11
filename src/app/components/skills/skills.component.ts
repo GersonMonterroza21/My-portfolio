@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AnimationService } from '../../services/animation.service';
 
 @Component({
   selector: 'app-skills',
@@ -8,7 +9,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule]
 })
-export class SkillsComponent implements OnInit {
+export class SkillsComponent implements OnInit, AfterViewInit, OnDestroy {
   skills = [
     { name: 'Angular', level: 85, icon: '🅰️', animated: false },
     { name: 'Ionic', level: 80, icon: '⚡', animated: false },
@@ -18,9 +19,20 @@ export class SkillsComponent implements OnInit {
     { name: 'Git & GitHub', level: 80, icon: '🐙', animated: false },
   ];
 
+  constructor(private animationService: AnimationService) {}
+
   ngOnInit() {
     setTimeout(() => {
       this.skills = this.skills.map(s => ({ ...s, animated: true }));
     }, 300);
+  }
+
+  ngAfterViewInit() {
+    const elements = document.querySelectorAll('#skills .fade-up');
+    this.animationService.observe(elements);
+  }
+
+  ngOnDestroy() {
+    this.animationService.disconnect();
   }
 }

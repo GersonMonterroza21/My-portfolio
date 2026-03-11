@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AnimationService } from '../../services/animation.service';
 
 @Component({
   selector: 'app-about',
@@ -8,13 +9,24 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule]
 })
-export class AboutComponent implements OnInit {
+export class AboutComponent implements OnInit, AfterViewInit, OnDestroy {
   yearsCount = 0;
   projectsCount = 0;
   techCount = 0;
 
+  constructor(private animationService: AnimationService) {}
+
   ngOnInit() {
     this.animateCounters();
+  }
+
+  ngAfterViewInit() {
+    const elements = document.querySelectorAll('#about .fade-up, #about .fade-right');
+    this.animationService.observe(elements);
+  }
+
+  ngOnDestroy() {
+    this.animationService.disconnect();
   }
 
   animateCounters() {

@@ -4,10 +4,8 @@ import { IonIcon } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import {
   sunnyOutline, moonOutline, homeOutline, personOutline,
-  rocketOutline, briefcaseOutline, mailOutline
+  flashOutline, rocketOutline, briefcaseOutline, mailOutline
 } from 'ionicons/icons';
-import { LanguageService } from '../../services/language.service';
-import { TRANSLATIONS } from '../../translations';
 
 @Component({
   selector: 'app-navbar',
@@ -19,25 +17,22 @@ import { TRANSLATIONS } from '../../translations';
 export class NavbarComponent implements OnInit {
   isDark = true;
   isScrolled = false;
+  currentLang = 'ES';
   activeSection = 0;
 
-  constructor(public langService: LanguageService) {
+  sections = [
+    { id: 'hero', label: 'Inicio', icon: 'home-outline' },
+    { id: 'about', label: 'Sobre mí', icon: 'person-outline' },
+    { id: 'projects', label: 'Proyectos', icon: 'rocket-outline' },
+    { id: 'experience', label: 'Exp.', icon: 'briefcase-outline' },
+    { id: 'contact', label: 'Contacto', icon: 'mail-outline' },
+  ];
+
+  constructor() {
     addIcons({
       sunnyOutline, moonOutline, homeOutline, personOutline,
-      rocketOutline, briefcaseOutline, mailOutline
+      flashOutline, rocketOutline, briefcaseOutline, mailOutline
     });
-  }
-
-  get sections() {
-    const t = TRANSLATIONS.nav;
-    const lang = this.langService.currentLang();
-    return [
-      { id: 'hero',       label: t.home[lang],       icon: 'home-outline' },
-      { id: 'about',      label: t.about[lang],      icon: 'person-outline' },
-      { id: 'projects',   label: t.projects[lang],   icon: 'rocket-outline' },
-      { id: 'experience', label: t.experience[lang], icon: 'briefcase-outline' },
-      { id: 'contact',    label: t.contact[lang],    icon: 'mail-outline' },
-    ];
   }
 
   ngOnInit() {
@@ -49,9 +44,12 @@ export class NavbarComponent implements OnInit {
       const el = document.getElementById(s.id);
       return el ? el.offsetTop : 9999;
     });
+
     let active = 0;
     for (let i = 0; i < offsets.length; i++) {
-      if (scrollTop >= offsets[i] - 200) active = i;
+      if (scrollTop >= offsets[i] - 200) {
+        active = i;
+      }
     }
     this.activeSection = active;
   }
@@ -63,7 +61,7 @@ export class NavbarComponent implements OnInit {
   }
 
   toggleLang() {
-    this.langService.toggle();
+    this.currentLang = this.currentLang === 'ES' ? 'EN' : 'ES';
   }
 
   scrollToSection(id: string) {

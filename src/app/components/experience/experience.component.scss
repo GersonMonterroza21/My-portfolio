@@ -124,3 +124,51 @@
   border-radius: 4px;
   color: var(--portfolio-text-secondary);
 }
+
+.timeline-dot {
+  position: absolute;
+  left: 50%;
+  top: 20px;
+  width: 36px;
+  height: 36px;
+  background: var(--portfolio-bg);
+  border: 2px solid var(--portfolio-accent);
+  border-radius: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  ion-icon {
+    font-size: 1.1rem;
+    color: var(--portfolio-accent);
+  }
+
+  @media (max-width: 768px) {
+    left: 16px;
+  }
+}
+
+.timeline-item.education .timeline-card {
+  border-style: dashed;
+  opacity: 0.85;
+}
+
+.title-btn {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 6px 16px;
+  border: 1px solid var(--portfolio-accent);
+  border-radius: 6px;
+  color: var(--portfolio-accent);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: var(--portfolio-accent);
+    color: white;
+  }
+}

@@ -1,5 +1,8 @@
 import { Component, AfterViewInit, OnDestroy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { IonIcon } from '@ionic/angular/standalone';
+import { addIcons } from 'ionicons';
+import { mailOutline, logoGithub, logoLinkedin, downloadOutline } from 'ionicons/icons';
 import { AnimationService } from '../../services/animation.service';
 
 @Component({
@@ -7,7 +10,7 @@ import { AnimationService } from '../../services/animation.service';
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss'],
   standalone: true,
-  imports: [FormsModule]
+  imports: [FormsModule, IonIcon]
 })
 export class ContactComponent implements AfterViewInit, OnDestroy {
   form = {
@@ -16,7 +19,9 @@ export class ContactComponent implements AfterViewInit, OnDestroy {
     message: ''
   };
 
-  constructor(private animationService: AnimationService) {}
+  constructor(private animationService: AnimationService) {
+    addIcons({ mailOutline, logoGithub, logoLinkedin, downloadOutline });
+  }
 
   ngAfterViewInit() {
     const elements = document.querySelectorAll('#contact .fade-up, #contact .fade-right');

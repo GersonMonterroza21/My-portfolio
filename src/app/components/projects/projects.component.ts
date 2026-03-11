@@ -8,6 +8,7 @@ interface Project {
   category: string;
   techs: string[];
   emoji: string;
+  image: string,
   github: string;
   demo: string;
   store?: string;
@@ -34,6 +35,7 @@ export class ProjectsComponent implements OnInit, AfterViewInit, OnDestroy {
       category: 'FULLSTACK',
       techs: ['Vue.js', 'Quasar', 'Firebase', 'CouchDB'],
       emoji: '🚌',
+      image: 'assets/1.png',
       github: 'https://github.com/diseno2023/atrasvasolo',
       demo: 'https://atrasvasolo.com/#/',
       store: 'https://play.google.com/store/apps/details?id=com.atrasvasolo'
@@ -44,6 +46,7 @@ export class ProjectsComponent implements OnInit, AfterViewInit, OnDestroy {
       category: 'FRONTEND',
       techs: ['React', 'HTML5', 'CSS3'],
       emoji: '🌐',
+      image: 'assets/2.png',
       github: 'https://github.com/diseno2023/atrasvasolo',
       demo: 'https://website.atrasvasolo.com',
     },
@@ -53,6 +56,7 @@ export class ProjectsComponent implements OnInit, AfterViewInit, OnDestroy {
       category: 'FULLSTACK',
       techs: ['Laravel', 'Firebase', 'PHP'],
       emoji: '🛒',
+      image: 'assets/3.jpeg',
       github: 'https://github.com/GersonMonterroza21/inventario-libreria',
       demo: '#',
     },
@@ -62,6 +66,7 @@ export class ProjectsComponent implements OnInit, AfterViewInit, OnDestroy {
       category: 'FRONTEND',
       techs: ['Ionic', 'Angular', 'TypeScript'],
       emoji: '🚀',
+      image: 'assets/4.png',
       github: 'https://github.com/GersonMonterroza21/My-portfolio',
       demo: 'https://gersonfullstack.netlify.app',
     },
@@ -76,11 +81,14 @@ export class ProjectsComponent implements OnInit, AfterViewInit, OnDestroy {
     return this.currentIndex >= this.filteredProjects.length - 1;
   }
 
-  get cardWidth(): number {
-    if (window.innerWidth < 600) return window.innerWidth * 0.9;
-    if (window.innerWidth < 900) return window.innerWidth * 0.45;
-    return (window.innerWidth * 0.85) / 3;
-  }
+ get cardWidth(): number {
+  const trackEl = this.track?.nativeElement;
+  if (!trackEl) return 300;
+  const trackWidth = trackEl.offsetWidth;
+  if (window.innerWidth < 600) return trackWidth;
+  if (window.innerWidth < 900) return (trackWidth - 20) / 2;
+  return (trackWidth - 40) / 3;
+}
 
   ngOnInit() {
     this.filteredProjects = this.projects;

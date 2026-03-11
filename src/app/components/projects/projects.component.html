@@ -17,16 +17,14 @@
 
     <div class="cards-track" #track>
       <div class="project-card" *ngFor="let project of filteredProjects">
-        <div class="project-image">
-          <div class="project-placeholder">
-            <span>{{ project.emoji }}</span>
-          </div>
-          <div class="project-overlay">
-            <a [href]="project.github" target="_blank" class="overlay-btn">GitHub</a>
-            <a *ngIf="project.demo !== '#'" [href]="project.demo" target="_blank" class="overlay-btn accent-btn">Demo</a>
-            <a *ngIf="project.store" [href]="project.store" target="_blank" class="overlay-btn store-btn">▶ Play Store</a>
-          </div>
-        </div>
+   <div class="project-image">
+  <img [src]="project.image" [alt]="project.title" />
+  <div class="project-overlay">
+    <a [href]="project.github" target="_blank" class="overlay-btn">GitHub</a>
+    <a *ngIf="project.demo !== '#'" [href]="project.demo" target="_blank" class="overlay-btn accent-btn">Demo</a>
+    <a *ngIf="project.store" [href]="project.store" target="_blank" class="overlay-btn store-btn">▶ Play Store</a>
+  </div>
+</div>
         <div class="project-body">
           <div class="project-tags-row">
             <span class="project-category">{{ project.category }}</span>

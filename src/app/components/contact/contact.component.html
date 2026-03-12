@@ -29,23 +29,50 @@
     </a>
   </div>
 
+  <div class="contact-divider"></div>
+
   <div class="contact-right fade-right delay-2">
+    <div class="contact-glow"></div>
     <div class="contact-form">
       <div class="form-row">
         <div class="form-group">
           <label>NOMBRE</label>
-          <input type="text" [(ngModel)]="form.name" placeholder="Tu nombre" />
+          <input
+            type="text"
+            [(ngModel)]="form.name"
+            (blur)="touch('name')"
+            placeholder="Tu nombre"
+            [class.invalid]="nameError" />
+          <span class="field-error" *ngIf="nameError">{{ nameError }}</span>
         </div>
         <div class="form-group">
           <label>CORREO ELECTRÓNICO</label>
-          <input type="email" [(ngModel)]="form.email" placeholder="tu@email.com" />
+          <input
+            type="email"
+            [(ngModel)]="form.email"
+            (blur)="touch('email')"
+            placeholder="tu@email.com"
+            [class.invalid]="emailError" />
+          <span class="field-error" *ngIf="emailError">{{ emailError }}</span>
         </div>
       </div>
       <div class="form-group">
         <label>TU MENSAJE</label>
-        <textarea [(ngModel)]="form.message" rows="6" placeholder="Cuéntame sobre tu proyecto..."></textarea>
+        <textarea
+          [(ngModel)]="form.message"
+          (blur)="touch('message')"
+          rows="6"
+          placeholder="Cuéntame sobre tu proyecto..."
+          [class.invalid]="messageError"></textarea>
+        <span class="field-error" *ngIf="messageError">{{ messageError }}</span>
       </div>
-      <button class="submit-btn" (click)="sendMessage()">ENVIAR MENSAJE</button>
+
+      <button class="submit-btn" (click)="sendMessage()" [disabled]="sending">
+        {{ sending ? 'ENVIANDO...' : 'ENVIAR MENSAJE' }}
+      </button>
+
+      <p *ngIf="sent" class="form-success"> ¡Mensaje enviado! Te contactaré pronto.</p>
+      <p *ngIf="error" class="form-error">Hubo un error. Intenta de nuevo.</p>
     </div>
   </div>
 </section>

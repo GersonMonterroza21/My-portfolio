@@ -1,8 +1,7 @@
 <nav class="navbar" [class.scrolled]="isScrolled">
-  <div class="nav-logo">
-    <span class="logo-text">EG</span>
-    <span class="logo-arrow">>></span>
-  </div>
+<div class="nav-logo" (click)="scrollToSection('hero')">
+  <img [src]="isDark ? 'assets/logo2.png' : 'assets/logo1.png'" alt="Logo" class="logo-img" />
+</div>
 
   <div class="nav-right">
     <button class="theme-toggle" (click)="toggleTheme()">
@@ -12,7 +11,6 @@
   </div>
 </nav>
 
-<!-- Puntos laterales solo desktop -->
 <div class="side-dots">
   <div
     *ngFor="let section of sections; let i = index"
@@ -24,7 +22,6 @@
   </div>
 </div>
 
-<!-- Navegación inferior solo móvil -->
 <div class="mobile-nav">
   <div
     *ngFor="let section of sections; let i = index"

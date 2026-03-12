@@ -10,35 +10,28 @@
   padding: 20px 5%;
   transition: all 0.3s ease;
 
-  &.scrolled {
-    background: var(--portfolio-nav-bg);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    padding: 14px 5%;
-    border-bottom: 1px solid var(--portfolio-border);
-  }
+&.scrolled {
+  background: var(--portfolio-nav-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 14px 5%;
+  border-bottom: 1px solid var(--portfolio-border);
+}
 }
 
 .nav-logo {
-  display: flex;
-  align-items: center;
-  gap: 4px;
   cursor: pointer;
 
-  .logo-text {
-    background: var(--portfolio-accent);
-    color: white;
-    font-weight: 800;
-    font-size: 1rem;
-    padding: 6px 10px;
-    border-radius: 6px;
-    letter-spacing: 1px;
-  }
+  .logo-img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+    transition: all 0.3s ease;
 
-  .logo-arrow {
-    color: var(--portfolio-accent);
-    font-weight: 800;
-    font-size: 1.1rem;
+    &:hover {
+      opacity: 0.8;
+      transform: scale(1.05);
+    }
   }
 }
 
@@ -58,7 +51,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
   transition: all 0.3s ease;
   color: var(--portfolio-text);
 
@@ -91,7 +83,6 @@
   }
 }
 
-/* PUNTOS LATERALES - solo desktop */
 .side-dots {
   position: fixed;
   right: 24px;
@@ -153,7 +144,6 @@
   }
 }
 
-/* BARRA INFERIOR - solo móvil */
 .mobile-nav {
   display: none;
   position: fixed;
@@ -162,8 +152,8 @@
   transform: translateX(-50%);
   z-index: 1000;
   background: var(--portfolio-nav-bg);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--portfolio-border);
   border-radius: 999px;
   padding: 10px 20px;
@@ -175,7 +165,6 @@
     gap: 8px;
   }
 }
-
 .mobile-nav-item {
   display: flex;
   flex-direction: column;

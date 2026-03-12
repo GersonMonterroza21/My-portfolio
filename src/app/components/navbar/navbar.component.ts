@@ -4,7 +4,7 @@ import { IonIcon } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import {
   sunnyOutline, moonOutline, homeOutline, personOutline,
-  flashOutline, rocketOutline, briefcaseOutline, mailOutline
+  rocketOutline, briefcaseOutline, mailOutline
 } from 'ionicons/icons';
 
 @Component({
@@ -21,17 +21,17 @@ export class NavbarComponent implements OnInit {
   activeSection = 0;
 
   sections = [
-    { id: 'hero', label: 'Inicio', icon: 'home-outline' },
-    { id: 'about', label: 'Sobre mí', icon: 'person-outline' },
-    { id: 'projects', label: 'Proyectos', icon: 'rocket-outline' },
-    { id: 'experience', label: 'Exp.', icon: 'briefcase-outline' },
-    { id: 'contact', label: 'Contacto', icon: 'mail-outline' },
+    { id: 'hero',       label: 'Inicio',    icon: 'home-outline' },
+    { id: 'about',      label: 'Sobre mí',  icon: 'person-outline' },
+    { id: 'projects',   label: 'Proyectos', icon: 'rocket-outline' },
+    { id: 'experience', label: 'Exp.',      icon: 'briefcase-outline' },
+    { id: 'contact',    label: 'Contacto',  icon: 'mail-outline' },
   ];
 
   constructor() {
     addIcons({
       sunnyOutline, moonOutline, homeOutline, personOutline,
-      flashOutline, rocketOutline, briefcaseOutline, mailOutline
+      rocketOutline, briefcaseOutline, mailOutline
     });
   }
 
@@ -44,12 +44,9 @@ export class NavbarComponent implements OnInit {
       const el = document.getElementById(s.id);
       return el ? el.offsetTop : 9999;
     });
-
     let active = 0;
     for (let i = 0; i < offsets.length; i++) {
-      if (scrollTop >= offsets[i] - 200) {
-        active = i;
-      }
+      if (scrollTop >= offsets[i] - 200) active = i;
     }
     this.activeSection = active;
   }

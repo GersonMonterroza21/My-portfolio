@@ -81,7 +81,7 @@ export class ProjectsComponent implements OnInit, AfterViewInit, OnDestroy {
     return this.currentIndex >= this.filteredProjects.length - 1;
   }
 
- get cardWidth(): number {
+get cardWidth(): number {
   const trackEl = this.track?.nativeElement;
   if (!trackEl) return 300;
   const trackWidth = trackEl.offsetWidth;

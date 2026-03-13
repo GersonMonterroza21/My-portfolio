@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonIcon } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
@@ -6,6 +6,7 @@ import {
   sunnyOutline, moonOutline, homeOutline, personOutline,
   rocketOutline, briefcaseOutline, mailOutline
 } from 'ionicons/icons';
+import { LanguageService } from '../../translations';
 
 @Component({
   selector: 'app-navbar',
@@ -17,22 +18,32 @@ import {
 export class NavbarComponent implements OnInit {
   isDark = true;
   isScrolled = false;
-  currentLang = 'ES';
   activeSection = 0;
 
   sections = [
-    { id: 'hero',       label: 'Inicio',    icon: 'home-outline' },
-    { id: 'about',      label: 'Sobre mí',  icon: 'person-outline' },
-    { id: 'projects',   label: 'Proyectos', icon: 'rocket-outline' },
-    { id: 'experience', label: 'Exp.',      icon: 'briefcase-outline' },
-    { id: 'contact',    label: 'Contacto',  icon: 'mail-outline' },
+    { id: 'hero',       icon: 'home-outline' },
+    { id: 'about',      icon: 'person-outline' },
+    { id: 'projects',   icon: 'rocket-outline' },
+    { id: 'experience', icon: 'briefcase-outline' },
+    { id: 'contact',    icon: 'mail-outline' },
   ];
 
-  constructor() {
+  constructor(public lang: LanguageService) {
     addIcons({
       sunnyOutline, moonOutline, homeOutline, personOutline,
       rocketOutline, briefcaseOutline, mailOutline
     });
+  }
+
+  getSectionLabel(id: string): string {
+    const labels: Record<string, string> = {
+      hero: this.lang.t.nav_inicio,
+      about: this.lang.t.nav_sobre,
+      projects: this.lang.t.nav_proyectos,
+      experience: this.lang.t.nav_experiencia,
+      contact: this.lang.t.nav_contacto,
+    };
+    return labels[id] || id;
   }
 
   ngOnInit() {
@@ -58,7 +69,7 @@ export class NavbarComponent implements OnInit {
   }
 
   toggleLang() {
-    this.currentLang = this.currentLang === 'ES' ? 'EN' : 'ES';
+    this.lang.toggle();
   }
 
   scrollToSection(id: string) {

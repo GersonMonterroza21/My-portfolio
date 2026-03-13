@@ -1,5 +1,5 @@
 <section class="projects" id="projects">
-  <h2 class="section-title fade-up">PROYECTOS</h2>
+  <h2 class="section-title fade-up">{{ lang.t.projects_title }}</h2>
   <div class="section-underline fade-up delay-1"></div>
 
   <div class="filter-tabs">
@@ -17,14 +17,14 @@
 
     <div class="cards-track" #track>
       <div class="project-card" *ngFor="let project of filteredProjects">
-   <div class="project-image">
-  <img [src]="project.image" [alt]="project.title" />
-  <div class="project-overlay">
-    <a [href]="project.github" target="_blank" class="overlay-btn">GitHub</a>
-    <a *ngIf="project.demo !== '#'" [href]="project.demo" target="_blank" class="overlay-btn accent-btn">Demo</a>
-    <a *ngIf="project.store" [href]="project.store" target="_blank" class="overlay-btn store-btn">▶ Play Store</a>
-  </div>
-</div>
+        <div class="project-image">
+          <img [src]="project.image" [alt]="project.titleES" />
+          <div class="project-overlay">
+            <a [href]="project.github" target="_blank" class="overlay-btn">GitHub</a>
+            <a *ngIf="project.demo !== '#'" [href]="project.demo" target="_blank" class="overlay-btn accent-btn">Demo</a>
+            <a *ngIf="project.store" [href]="project.store" target="_blank" class="overlay-btn store-btn">▶ Play Store</a>
+          </div>
+        </div>
         <div class="project-body">
           <div class="project-tags-row">
             <span class="project-category">{{ project.category }}</span>
@@ -32,8 +32,12 @@
               <span class="project-tech" *ngFor="let tech of project.techs">{{ tech }}</span>
             </div>
           </div>
-          <h3 class="project-title">{{ project.title }}</h3>
-          <p class="project-desc">{{ project.description }}</p>
+          <h3 class="project-title">
+            {{ lang.current() === 'ES' ? project.titleES : project.titleEN }}
+          </h3>
+          <p class="project-desc">
+            {{ lang.current() === 'ES' ? project.descES : project.descEN }}
+          </p>
         </div>
       </div>
     </div>

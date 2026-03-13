@@ -1,31 +1,23 @@
 <section class="about" id="about">
   <div class="about-left">
-    <h2 class="section-title fade-up">SOBRE MÍ</h2>
+    <h2 class="section-title fade-up">{{ lang.t.about_title }}</h2>
     <div class="section-underline fade-up delay-1"></div>
 
-    <p class="about-tagline accent fade-up delay-2">
-      Ingeniero en Sistemas enfocado en construir aplicaciones escalables y de impacto real.
-    </p>
-
-    <p class="about-text fade-up delay-3">
-      Ingeniero en Sistemas Computacionales con experiencia en desarrollo web full-stack,
-      gestión de bases de datos y soluciones en la nube. Domino frameworks modernos como
-      Vue.js, Quasar y Laravel, además de arquitecturas basadas en APIs y aplicaciones en
-      tiempo real. Me apasiona el código limpio, las arquitecturas escalables y el aprendizaje continuo.
-    </p>
+    <p class="about-tagline accent fade-up delay-2">{{ lang.t.about_tagline }}</p>
+    <p class="about-text fade-up delay-3">{{ lang.t.about_text }}</p>
 
     <div class="about-stats fade-up delay-4">
       <div class="stat">
         <span class="stat-number accent">{{ yearsCount }}+</span>
-        <span class="stat-label">AÑOS EXP.</span>
+        <span class="stat-label">{{ lang.t.about_years }}</span>
       </div>
       <div class="stat">
-        <span class="stat-number accent">{{ techCount }}+</span>
-        <span class="stat-label">TECNOLOGIAS</span>
+        <span class="stat-number accent">{{ projectsCount }}+</span>
+        <span class="stat-label">{{ lang.t.about_projects }}</span>
       </div>
       <div class="stat">
         <span class="stat-number accent">🇪🇸-🇺🇸 </span>
-        <span class="stat-label">IDIOMAS</span>
+        <span class="stat-label">{{ lang.t.about_techs }}</span>
       </div>
     </div>
   </div>
@@ -51,7 +43,7 @@
         <div class="tech-tags">
           <span class="tech-tag">Laravel</span>
           <span class="tech-tag">PHP</span>
-          <span class="tech-tag">Python</span>
+           <span class="tech-tag">Python</span>
           <span class="tech-tag">C++</span>
           <span class="tech-tag">Java</span>
           <span class="tech-tag">Node.js</span>
@@ -60,7 +52,7 @@
       </div>
 
       <div class="tech-group">
-        <span class="tech-group-label">BASE DE DATOS</span>
+        <span class="tech-group-label">{{ lang.t.about_db }}</span>
         <div class="tech-tags">
           <span class="tech-tag">Firebase</span>
           <span class="tech-tag">CouchDB</span>
@@ -70,21 +62,21 @@
       </div>
 
       <div class="tech-group">
-        <span class="tech-group-label">HERRAMIENTAS</span>
+        <span class="tech-group-label">{{ lang.t.about_tools }}</span>
         <div class="tech-tags">
           <span class="tech-tag">Git</span>
           <span class="tech-tag">GitHub</span>
           <span class="tech-tag">Postman</span>
           <span class="tech-tag">Linux</span>
         </div>
+      </div>
 
-        <div class="tech-group">
-  <span class="tech-group-label">IDIOMAS</span>
-  <div class="tech-tags">
-    <span class="tech-tag">ES Nativo</span>
-    <span class="tech-tag">US Avanzado</span>
-  </div>
-</div>
+      <div class="tech-group">
+        <span class="tech-group-label">{{ lang.t.about_languages }}</span>
+        <div class="tech-tags">
+          <span class="tech-tag">🇪🇸 {{ lang.t.about_spanish }}</span>
+          <span class="tech-tag">🇺🇸 {{ lang.t.about_english }}</span>
+        </div>
       </div>
     </div>
   </div>

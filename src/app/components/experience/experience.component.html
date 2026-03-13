@@ -1,5 +1,5 @@
 <section class="experience" id="experience">
-  <h2 class="section-title fade-up">EXPERIENCIA</h2>
+  <h2 class="section-title fade-up">{{ lang.t.experience_title }}</h2>
   <div class="section-underline fade-up delay-1"></div>
 
   <div class="timeline">
@@ -17,14 +17,18 @@
       </div>
       <div class="timeline-card">
         <span class="timeline-date">{{ item.date }}</span>
-        <h3 class="timeline-role">{{ item.role }}</h3>
+        <h3 class="timeline-role">
+          {{ lang.current() === 'ES' ? item.roleES : item.roleEN }}
+        </h3>
         <p class="timeline-company accent">{{ item.company }}</p>
-        <p class="timeline-desc">{{ item.description }}</p>
+        <p class="timeline-desc">
+          {{ lang.current() === 'ES' ? item.descES : item.descEN }}
+        </p>
         <div class="timeline-techs" *ngIf="item.techs.length > 0">
           <span class="timeline-tech" *ngFor="let tech of item.techs">{{ tech }}</span>
         </div>
         <a *ngIf="item.link" [href]="'assets/' + item.link" target="_blank" class="title-btn">
-          Ver título 
+          {{ lang.t.exp_ver_titulo }}
         </a>
       </div>
     </div>

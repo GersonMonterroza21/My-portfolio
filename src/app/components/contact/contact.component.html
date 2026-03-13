@@ -1,16 +1,13 @@
 <section class="contact" id="contact">
   <div class="contact-left">
-    <h2 class="section-title fade-up">CONTACTO</h2>
+    <h2 class="section-title fade-up">{{ lang.t.contact_title }}</h2>
     <div class="section-underline fade-up delay-1"></div>
 
-    <p class="contact-question fade-up delay-2">¿Tienes un proyecto en mente?</p>
-    <p class="contact-text fade-up delay-3">
-      Estoy listo para llevar tus ideas al siguiente nivel.
-      Escríbeme y hablemos sobre cómo puedo ayudarte.
-    </p>
+    <p class="contact-question fade-up delay-2">{{ lang.t.contact_question }}</p>
+    <p class="contact-text fade-up delay-3">{{ lang.t.contact_text }}</p>
 
     <div class="contact-socials fade-up delay-4">
-      <p class="socials-label">REDES SOCIALES</p>
+      <p class="socials-label">{{ lang.t.contact_redes }}</p>
       <div class="socials-row">
         <a href="mailto:monterrozag21@gmail.com" class="social-btn" title="Email">
           <ion-icon name="mail-outline"></ion-icon>
@@ -24,9 +21,11 @@
       </div>
     </div>
 
-    <a href="assets/CV_Gerson_Monterroza.pdf" target="_blank" class="cv-btn fade-up delay-5">
-      <ion-icon name="download-outline"></ion-icon> Descargar CV
-    </a>
+    <a [href]="lang.current() === 'ES' ? 'assets/CV_Gerson_Monterroza_ES.pdf' : 'assets/CV_Gerson_Monterroza_EN.pdf'" 
+   target="_blank" 
+   class="cv-btn fade-up delay-5">
+  <ion-icon name="download-outline"></ion-icon> {{ lang.t.contact_cv }}
+</a>
   </div>
 
   <div class="contact-divider"></div>
@@ -36,43 +35,43 @@
     <div class="contact-form">
       <div class="form-row">
         <div class="form-group">
-          <label>NOMBRE</label>
+          <label>{{ lang.t.contact_nombre }}</label>
           <input
             type="text"
             [(ngModel)]="form.name"
             (blur)="touch('name')"
-            placeholder="Tu nombre"
+            [placeholder]="lang.t.contact_placeholder_nombre"
             [class.invalid]="nameError" />
           <span class="field-error" *ngIf="nameError">{{ nameError }}</span>
         </div>
         <div class="form-group">
-          <label>CORREO ELECTRÓNICO</label>
+          <label>{{ lang.t.contact_email }}</label>
           <input
             type="email"
             [(ngModel)]="form.email"
             (blur)="touch('email')"
-            placeholder="tu@email.com"
+            [placeholder]="lang.t.contact_placeholder_email"
             [class.invalid]="emailError" />
           <span class="field-error" *ngIf="emailError">{{ emailError }}</span>
         </div>
       </div>
       <div class="form-group">
-        <label>TU MENSAJE</label>
+        <label>{{ lang.t.contact_mensaje }}</label>
         <textarea
           [(ngModel)]="form.message"
           (blur)="touch('message')"
           rows="6"
-          placeholder="Cuéntame sobre tu proyecto..."
+          [placeholder]="lang.t.contact_placeholder_mensaje"
           [class.invalid]="messageError"></textarea>
         <span class="field-error" *ngIf="messageError">{{ messageError }}</span>
       </div>
 
       <button class="submit-btn" (click)="sendMessage()" [disabled]="sending">
-        {{ sending ? 'ENVIANDO...' : 'ENVIAR MENSAJE' }}
+        {{ sending ? lang.t.contact_btn_enviando : lang.t.contact_btn_enviar }}
       </button>
 
-      <p *ngIf="sent" class="form-success"> ¡Mensaje enviado! Te contactaré pronto.</p>
-      <p *ngIf="error" class="form-error">Hubo un error. Intenta de nuevo.</p>
+      <p *ngIf="sent" class="form-success">{{ lang.t.contact_success }}</p>
+      <p *ngIf="error" class="form-error">{{ lang.t.contact_error }}</p>
     </div>
   </div>
 </section>

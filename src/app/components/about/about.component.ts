@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AnimationService } from '../../services/animation.service';
+import { LanguageService } from '../../translations';
 
 @Component({
   selector: 'app-about',
@@ -14,7 +15,10 @@ export class AboutComponent implements OnInit, AfterViewInit, OnDestroy {
   projectsCount = 0;
   techCount = 0;
 
-  constructor(private animationService: AnimationService) {}
+  constructor(
+    private animationService: AnimationService,
+    public lang: LanguageService
+  ) {}
 
   ngOnInit() {
     this.animateCounters();
@@ -30,8 +34,8 @@ export class AboutComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   animateCounters() {
-    this.animateValue('yearsCount', 0, 5, 1500);
-    this.animateValue('projectsCount', 0, 10, 2000);
+    this.animateValue('yearsCount', 0, 3, 1500);
+    this.animateValue('projectsCount', 0, 15, 2000);
     this.animateValue('techCount', 0, 15, 1800);
   }
 

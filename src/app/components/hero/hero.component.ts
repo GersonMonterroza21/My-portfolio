@@ -1,5 +1,6 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, NgZone } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { LanguageService } from '../../translations';
 
 @Component({
   selector: 'app-hero',
@@ -10,53 +11,61 @@ import { CommonModule } from '@angular/common';
 })
 export class HeroComponent implements OnInit, OnDestroy {
   displayText = '';
-  cursor = true;
-  private words = ['experiencias únicas', 'soluciones reales', 'código limpio', 'apps increíbles'];
-  private wordIndex = 0;
   private charIndex = 0;
-  private isDeleting = false;
-  private typeInterval: any;
+  private wordIndex = 0;
+  private deleting = false;
+  private timer: any;
+  private currentWord = '';
 
-particles = Array.from({ length: 50 }, () => ({
-  x: Math.random() * 100,
-  y: Math.random() * 100,
-  size: Math.random() * 6 + 2,
-  delay: `${Math.random() * 8}s`
-}));
+  private allWords = {
+    ES: ['experiencias únicas', 'soluciones escalables', 'código limpio', 'apps en tiempo real'],
+    EN: ['unique experiences', 'scalable solutions', 'clean code', 'real-time apps']
+  };
+
+  constructor(public lang: LanguageService, private ngZone: NgZone) {}
 
   ngOnInit() {
-    this.startTypewriter();
+    this.loadNextWord();
+    this.ngZone.runOutsideAngular(() => this.startTypewriter());
   }
 
   ngOnDestroy() {
-    clearInterval(this.typeInterval);
+    if (this.timer) clearTimeout(this.timer);
   }
 
-  startTypewriter() {
-    this.typeInterval = setInterval(() => {
-      const word = this.words[this.wordIndex];
-      if (this.isDeleting) {
-        this.displayText = word.substring(0, this.charIndex - 1);
-        this.charIndex--;
-      } else {
-        this.displayText = word.substring(0, this.charIndex + 1);
-        this.charIndex++;
+  private loadNextWord() {
+    const words = this.allWords[this.lang.current()];
+    this.currentWord = words[this.wordIndex % words.length];
+  }
+
+  private startTypewriter() {
+    if (this.timer) clearTimeout(this.timer);
+
+    if (!this.deleting) {
+      this.charIndex++;
+      const text = this.currentWord.substring(0, this.charIndex);
+      this.ngZone.run(() => this.displayText = text);
+      if (this.charIndex >= this.currentWord.length) {
+        this.deleting = true;
+        this.timer = setTimeout(() => this.startTypewriter(), 1800);
+        return;
       }
-
-      if (!this.isDeleting && this.charIndex === word.length) {
-        setTimeout(() => this.isDeleting = true, 1500);
-      } else if (this.isDeleting && this.charIndex === 0) {
-        this.isDeleting = false;
-        this.wordIndex = (this.wordIndex + 1) % this.words.length;
+    } else {
+      this.charIndex--;
+      const text = this.currentWord.substring(0, this.charIndex);
+      this.ngZone.run(() => this.displayText = text);
+      if (this.charIndex <= 0) {
+        this.deleting = false;
+        this.wordIndex++;
+        this.loadNextWord();
       }
-    }, 100);
+    }
+
+    this.timer = setTimeout(() => this.startTypewriter(), this.deleting ? 60 : 100);
   }
 
-  scrollToProjects() {
-    document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
-  }
-
-  scrollToContact() {
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+  scrollToSection(id: string) {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
   }
 }

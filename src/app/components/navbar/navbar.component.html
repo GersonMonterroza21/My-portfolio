@@ -1,13 +1,13 @@
 <nav class="navbar" [class.scrolled]="isScrolled">
-<div class="nav-logo" (click)="scrollToSection('hero')">
-  <img [src]="isDark ? 'assets/logo2.png' : 'assets/logo1.png'" alt="Logo" class="logo-img" />
-</div>
+  <div class="nav-logo" (click)="scrollToSection('hero')">
+    <img [src]="isDark ? 'assets/logo2.png' : 'assets/logo1.png'" alt="Logo" class="logo-img" />
+  </div>
 
   <div class="nav-right">
     <button class="theme-toggle" (click)="toggleTheme()">
       <ion-icon [name]="isDark ? 'sunny-outline' : 'moon-outline'"></ion-icon>
     </button>
-    <span class="nav-lang" (click)="toggleLang()">{{ currentLang }}</span>
+    <span class="nav-lang" (click)="toggleLang()">{{ lang.current() }}</span>
   </div>
 </nav>
 
@@ -17,7 +17,7 @@
     class="dot-item"
     [class.active]="activeSection === i"
     (click)="scrollToSection(section.id)">
-    <span class="dot-label">{{ section.label }}</span>
+    <span class="dot-label">{{ getSectionLabel(section.id) }}</span>
     <div class="dot"></div>
   </div>
 </div>
@@ -29,6 +29,6 @@
     [class.active]="activeSection === i"
     (click)="scrollToSection(section.id)">
     <ion-icon [name]="section.icon"></ion-icon>
-    <span class="mobile-nav-label">{{ section.label }}</span>
+    <span class="mobile-nav-label">{{ getSectionLabel(section.id) }}</span>
   </div>
 </div>

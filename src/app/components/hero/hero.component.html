@@ -1,14 +1,11 @@
 <section class="hero" id="hero">
   <div class="hero-content">
-    <p class="hero-subtitle">INGENIERO DE SISTEMAS INFORMÁTICOS</p>
+    <p class="hero-subtitle">{{ lang.t.hero_subtitle }}</p>
     <h1 class="hero-title">
-      Transformando ideas en<br>
+      {{ lang.t.hero_title }}<br>
       <span class="accent typewriter">{{ displayText }}<span class="cursor">|</span></span>
     </h1>
-    <p class="hero-description">
-      Hola, soy <strong>Gerson Monterroza</strong>, Ingeniero en Sistemas con experiencia
-      en desarrollo web full-stack, gestión de bases de datos y soluciones en la nube.
-    </p>
+    <p class="hero-description" [innerHTML]="lang.t.hero_desc"></p>
 
     <div class="hero-tags">
       <span class="tag">Vue.js</span>
@@ -19,8 +16,12 @@
     </div>
 
     <div class="hero-buttons">
-      <button class="btn-primary" (click)="scrollToProjects()">Ver proyectos</button>
-      <button class="btn-secondary" (click)="scrollToContact()">Contáctame</button>
+      <button class="btn-primary" (click)="scrollToSection('projects')">
+        {{ lang.t.hero_btn_proyectos }}
+      </button>
+      <button class="btn-secondary" (click)="scrollToSection('contact')">
+        {{ lang.t.hero_btn_contacto }}
+      </button>
     </div>
   </div>
 </section>

@@ -5,6 +5,7 @@ import { IonIcon } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { mailOutline, logoGithub, logoLinkedin, downloadOutline } from 'ionicons/icons';
 import { AnimationService } from '../../services/animation.service';
+import { LanguageService } from '../../translations';
 import emailjs from '@emailjs/browser';
 
 @Component({
@@ -23,7 +24,10 @@ export class ContactComponent implements AfterViewInit, OnDestroy {
 
   readonly MIN_MESSAGE = 20;
 
-  constructor(private animationService: AnimationService) {
+  constructor(
+    private animationService: AnimationService,
+    public lang: LanguageService
+  ) {
     addIcons({ mailOutline, logoGithub, logoLinkedin, downloadOutline });
   }
 
@@ -38,23 +42,25 @@ export class ContactComponent implements AfterViewInit, OnDestroy {
 
   get nameError(): string {
     if (!this.touched.name) return '';
-    if (!this.form.name.trim()) return 'El nombre es requerido.';
+    if (!this.form.name.trim()) return this.lang.current() === 'ES' ? 'El nombre es requerido.' : 'Name is required.';
     return '';
   }
 
   get emailError(): string {
     if (!this.touched.email) return '';
-    if (!this.form.email.trim()) return 'El correo es requerido.';
+    if (!this.form.email.trim()) return this.lang.current() === 'ES' ? 'El correo es requerido.' : 'Email is required.';
     const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.form.email);
-    if (!valid) return 'Ingresa un correo válido.';
+    if (!valid) return this.lang.current() === 'ES' ? 'Ingresa un correo válido.' : 'Enter a valid email.';
     return '';
   }
 
   get messageError(): string {
     if (!this.touched.message) return '';
-    if (!this.form.message.trim()) return 'El mensaje es requerido.';
+    if (!this.form.message.trim()) return this.lang.current() === 'ES' ? 'El mensaje es requerido.' : 'Message is required.';
     if (this.form.message.trim().length < this.MIN_MESSAGE)
-      return `Mínimo ${this.MIN_MESSAGE} caracteres (faltan ${this.MIN_MESSAGE - this.form.message.trim().length}).`;
+      return this.lang.current() === 'ES'
+        ? `Mínimo ${this.MIN_MESSAGE} caracteres (faltan ${this.MIN_MESSAGE - this.form.message.trim().length}).`
+        : `Minimum ${this.MIN_MESSAGE} characters (${this.MIN_MESSAGE - this.form.message.trim().length} left).`;
     return '';
   }
 
